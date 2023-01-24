@@ -32,7 +32,12 @@ void kernel5_omp()
 #pragma omp for
 		for (i = 1; i < n; i++)
 		{
-			x[i] = z[i] * (y[i] - x[i - 1]);
+			d[i] = x[i - 1];
+		}
+#pragma omp for
+		for (i = 1; i < n; i++)
+		{
+			x[i] = z[i] * (y[i] - d[i]);
 		}
 	}
 	argument = 5;

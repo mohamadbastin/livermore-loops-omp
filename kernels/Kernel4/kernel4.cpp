@@ -78,7 +78,7 @@ void kernel4_omp()
 #pragma omp critical
 				lw++;
 			}
-#pragma omp atomic
+			// #pragma omp atomic
 			x[k - 1] = y[4] * temp;
 		}
 	}

@@ -33,12 +33,18 @@ void kernel6_omp()
 #pragma omp parallel shared(k, w, b) private(i)
 	for (l = 1; l <= loop; l++)
 	{
-#pragma omp for
 		for (i = 1; i < n; i++)
 		{
+#pragma omp for
 			for (k = 0; k < i; k++)
 			{
-				w[i] += b[k][i] * w[(i - k) - 1];
+				u[k] = w[(i - k) - 1];
+			}
+
+#pragma omp for
+			for (k = 0; k < i; k++)
+			{
+				w[i] += b[k][i] * u[k];
 			}
 		}
 	}
